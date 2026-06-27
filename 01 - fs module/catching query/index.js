@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
-app.get('/:anything', (req, res) => {
-    const path = req.path.slice(1);
+app.get('/:fileName', (req, res) => {
+    const path = req.params.fileName;
     console.log(path);
 
     if (path === "/favicon.ico") return;
