@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 
 // parses the json body to be readable automatically before the body reaches the route
+
+app.use(cors({
+    hosts : []
+}))
+
 app.use(express.json());
 
 app.post('/sum', (req, res) => {
