@@ -9,6 +9,11 @@ let users = [];
 
 // basic auth using randomly generated token when user is signed in so he doesnt need to login over and over
 
+app.get('/' , (req, res) => {
+    res.sendFile(__dirname + '/public/index.html')
+})
+
+
 app.post('/signup', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -26,7 +31,7 @@ app.post('/signup', (req, res) => {
         password: password
     })
 
-    return res.status(404).json({
+    return res.status(200).json({
         msg: "User Created",
     })
 })
