@@ -3,14 +3,14 @@ const app = express();
 const {UserModel, TodoModel} = require('./db');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-const JWT_SECRET = "random" // just lazy to use dotenv module :(
 const bcrypt = require('bcrypt');
+require('dotenv').config()
 app.use(express.json());
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(
-  "mongodb://asingh52be24_db_user:85ZYGd9B6Tzna8QI@ac-plee2ha-shard-00-00.0eddsns.mongodb.net:27017,ac-plee2ha-shard-00-01.0eddsns.mongodb.net:27017,ac-plee2ha-shard-00-02.0eddsns.mongodb.net:27017/todo?ssl=true&replicaSet=atlas-xferxd-shard-0&authSource=admin&appName=Cluster-Free");
+    const conn = await mongoose.connect(process.env.MONGODB_URL);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`Error: ${error.message}`);
